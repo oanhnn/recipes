@@ -158,6 +158,10 @@ task('local:update_code', function () {
         // if we're using git cache this would be identical to above code in catch - full clone. If not, it would create shallow clone.
         runLocally("$git clone $at $depth --recursive -q $repository {{local_release_path}} 2>&1");
     }
+    if (!empty($revision)) {
+      //checkout code at a revision if provided.
+      runLocally("cd {{local_release_path}} && $git checkout $revision 2>&1");
+    }
 });
 
 
